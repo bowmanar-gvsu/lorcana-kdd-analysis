@@ -11,6 +11,8 @@ Grand Valley State University | Professor Jiaxin Du | April 2026
 
 Artie Bowman, Mohammad Aziz Boufaied, Kennedy Comstock, Nurudeen Showole
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bowmanar-gvsu/lorcana-kdd-analysis/blob/main/Lorcana_KDD_WhatWins_vs_WhatSells_V3.ipynb)
+
 ## Abstract
 
 This study applies a Knowledge Discovery in Databases (KDD) pipeline to Disney Lorcana, a trading card game with a dual-market ecosystem driven by competitive strategy and Disney IP collector demand. We integrate 2,652 cards from the Lorcast API (2,075 after deduplication), 749 tournament decklists from 710 unique players across 21 events in 13 countries, and three independent price sources spanning May 2025 through March 2026.
