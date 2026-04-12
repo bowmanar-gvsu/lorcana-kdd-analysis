@@ -9,7 +9,7 @@ Grand Valley State University | Professor Jiaxin Du | April 2026
 
 ## Authors
 
-**Artie Bowman** (lead, methodology, implementation, analysis, writing), Mohammad Aziz Boufaied, Kennedy Comstock, Nurudeen Showole
+Artie Bowman, Mohammad Aziz Boufaied, Kennedy Comstock, Nurudeen Showole
 
 ## Abstract
 
