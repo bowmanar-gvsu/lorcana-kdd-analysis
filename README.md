@@ -11,7 +11,7 @@ Grand Valley State University | Professor Jiaxin Du | April 2026
 
 Artie Bowman, Mohammad Aziz Boufaied, Kennedy Comstock, Nurudeen Showole
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/artiebowman/lorcana-kdd-analysis/blob/main/Lorcana_KDD_WhatWins_vs_WhatSells_Final.ipynb) [![Paper](https://img.shields.io/badge/Paper-Download-blue)](https://github.com/artiebowman/lorcana-kdd-analysis/raw/main/paper/Lorcana_KDD_Paper_Final_TeamAudit.docx)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/artiebowman/lorcana-tcg-what-wins-vs-what-sells/blob/main/Bowman_et_al_2026_Lorcana_KDD_Notebook.ipynb) [![Paper](https://img.shields.io/badge/Paper-Download-blue)](https://github.com/artiebowman/lorcana-tcg-what-wins-vs-what-sells/raw/main/paper/Bowman_et_al_2026_What_Wins_vs_What_Sells_Lorcana_KDD.pdf)
 
 ## Abstract
 
@@ -35,8 +35,12 @@ We introduce a **dual-axis SHAP framework** comparing feature importance for com
 | Rarity SHAP (price model) | 0.207 (5× the #2 feature) |
 | Archetype × Top-8 χ² | 11.85, p = 0.540 (not significant) |
 | Deck cost vs. Top-8 | r = −0.092, p = 0.012, Cohen's d = −0.230 |
+| Spearman placement ρ | +0.132, p < 0.001 (expensive decks place worse) |
+| Dogs winner overrepresentation | 1.96× (28.6% of wins from 14.6% of field) |
 | SCI validation (temporal) | ρ = 0.291, p < 0.001 |
 | Co-occurrence rules | 1,110 total, 120 cross-archetype (10.8%) |
+| WLD records collected | 102 across 7 verified tournaments |
+| LLM error audit | 10 errors across 7 events (1.4/event) |
 
 ## SHAP: What Wins vs. What Sells
 
@@ -54,27 +58,27 @@ We introduce a **dual-axis SHAP framework** comparing feature importance for com
 
 ```
 ├── README.md
-├── Lorcana_KDD_WhatWins_vs_WhatSells_V3.ipynb   # Full notebook (17 sections, 130 cells)
+├── Bowman_et_al_2026_Lorcana_KDD_Notebook.ipynb  # Full notebook (17 sections, 134 cells)
 ├── paper/
-│   └── Lorcana_KDD_Paper_V9_Final.docx           # Final paper (dual-column, ~9,000 words)
+│   ├── Bowman_et_al_2026_What_Wins_vs_What_Sells_Lorcana_KDD.pdf    # Final paper (PDF)
+│   └── Bowman_et_al_2026_What_Wins_vs_What_Sells_Lorcana_KDD.docx   # Final paper (Word)
 ├── presentation/
-│   └── Lorcana_KDD_Presentation.pptx              # 16-slide presentation
+│   └── (presentation slides — April 22, 2026)
 ├── data/
-│   ├── lorcana_master_summary.xlsx                 # Combined WLD data
+│   ├── lorcana_master_summary.xlsx                 # Combined WLD data (4 sheets)
 │   └── README_data.md                              # Data source documentation
 └── figures/
-    ├── fig_01_stat_distributions.png
-    ├── fig_04_meta_share.png
-    ├── fig_05_pca_clusters.png
-    ├── fig_07_shap_xgb.png                         # SHAP beeswarm (19 MI-filtered features)
-    ├── fig_09_price_shap.png
-    ├── fig_11_dual_axis_bars.png                    # Dual-axis SHAP comparison
-    ├── fig_12_dual_axis_scatter.png                 # Feature rank divergence scatter
-    ├── fig_13_deck_cost.png
-    ├── fig_15_network.png                           # Co-occurrence network (Louvain communities)
-    ├── fig_17_sci_bars.png                          # Sleeper Card Index
-    ├── fig_19_ablation.png                          # Feature engineering ablation
-    └── ...                                          # 21 total figures at 300 DPI
+    ├── fig_01_meta_share.png
+    ├── fig_02_pca_clusters.png
+    ├── fig_03_shap_beeswarm.png
+    ├── fig_04_price_shap.png
+    ├── fig_05_dual_axis_bars.png
+    ├── fig_06_dual_axis_scatter.png
+    ├── fig_07_deck_cost.png
+    ├── fig_08_network.png
+    ├── fig_09_sci_bars.png
+    ├── fig_10_ablation.png
+    └── ...                                          # All figures at 300 DPI
 ```
 
 ## Methods
@@ -84,6 +88,7 @@ We introduce a **dual-axis SHAP framework** comparing feature importance for com
 - **inkdecks.com** — 749 tournament decklists hand-collected from 21 official DLC/CCQ events
 - **tcgcsv.com** — Market prices for 2,906 entries (snapshot: April 10, 2026)
 - **Periodic price snapshots** — 17 monthly windows (May 2025–March 2026) for temporal reconstruction
+- **lorcana_master_summary.xlsx** — WLD records, tournament metadata, and LLM error audit from multi-source aggregation
 
 ### Pipeline (KDD Lifecycle)
 
@@ -105,11 +110,11 @@ We introduce a **dual-axis SHAP framework** comparing feature importance for com
 
 ## Running the Notebook
 
-1. Open `Lorcana_KDD_WhatWins_vs_WhatSells_V3.ipynb` in **Google Colab**
+1. Open `Bowman_et_al_2026_Lorcana_KDD_Notebook.ipynb` in **Google Colab**
 2. Run §1 (Setup & Imports) to install dependencies
 3. Cells run sequentially — each section builds on previous outputs
 4. §15 (Paper Number Verification) validates all numbers cited in the paper
-5. §16 exports all 21 figures at 300 DPI to Google Drive
+5. §16 exports all figures at 300 DPI to Google Drive
 
 ### Dependencies
 ```
@@ -119,7 +124,7 @@ mlxtend, matplotlib, seaborn, fuzzywuzzy, python-Levenshtein
 
 ## Not Pay-to-Win
 
-The cheapest competitive archetype (Dogs, $179 median) has the highest Top-8 rate (24.8%) and is overrepresented among tournament winners (1.96× ratio). The most expensive archetype (Blurple, $459) wins less often (18.8%). Deck cost is negatively correlated with winning (r = −0.092, p = 0.012).
+The cheapest competitive archetype (Dogs, $179 median) has the highest Top-8 rate (24.8%) and is overrepresented among tournament winners (1.96× ratio, median placement 18th vs 32nd for the most-played archetype). The most expensive archetype (Blurple, $459) wins less often (18.8%). Deck cost is negatively correlated with winning (r = −0.092, p = 0.012). Spearman rank correlation on exact placement (1st–128th) confirms this across the full range (ρ = +0.132, p < 0.001). Tournament winners have a median deck cost of $277 versus $316 overall.
 
 ## Acknowledgments
 
